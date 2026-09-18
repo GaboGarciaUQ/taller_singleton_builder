@@ -49,6 +49,16 @@ public class Main {
             .conCombo("Combo Nachos")
             .conPuntosRedimidos(80)
             .build();
+
+        ConsecutivoFactura a = ConsecutivoFactura.getInstancia();
+        ConsecutivoFactura b = ConsecutivoFactura.getInstancia();
+
+        System.out.println("a == b: " + (a == b)); // true
+        System.out.println(a.siguiente()); // 1
+        System.out.println(b.siguiente()); // 2
+        System.out.println(a.siguiente()); // 3
+
+        //new ConsecutivoFactura(); // comentar esto, para compilar
         
     }
 }
