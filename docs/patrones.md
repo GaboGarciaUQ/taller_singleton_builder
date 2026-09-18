@@ -1,0 +1,21 @@
+a) ¿Cuál es la limitación de Singleton frente a DIP, y cómo se resuelve? 
+Singleton acopla clases a una implementación concreta, violando DIP. Se resuelve con una interfaz (ej. GeneradorConsecutivo) que la clase implementa, inyectando la instancia por constructor en vez de llamar getInstancia() directamente.
+
+b) ¿En cuántos lugares del proyecto debe aparecer getInstancia() ? ¿Cuáles?
+Idealmente en un solo lugar: el punto de ensamblaje (main/configuración), donde se obtiene la instancia y se inyecta a quien la necesite, evitando dependencias dispersas.
+
+c) Singleton y Builder usan los dos un constructor privado. ¿Para qué sirve en cada uno? 
+
+  Singleton:  El constructor privado de singleton sirve para evitar la creacion de otras instancias de el objeto que se va a crear. Esto permite que la instancia creada sea unica.
+  Builder: El constructor privado de builder sirve para evitar la creación directa de objetos por medio de constructores tradicionales y adecuando el método Builder como la única ruta disponible para crear objetos.
+
+d) De estas clases de su proyecto, ¿cuál llevaría Builder y cuál no? Justifiquen en una línea:
+
+  Asiento(fila, número): En este no, pues son pocos atributos y ambos fila y columna son obligatorios.
+  Función: En este si pues cada funcion tiene varios atributos anclados a ella que no se pueden cambiar despues de su creacion y deben seguir una validacion segun reglas de negocio para evitar errores.
+  Combo: En este si ya que los combos hacen uso de varios atributos e incluso otros productos (objetos) ya existentes y ademas necesitan validar reglas de negocio como por ejemplo el saldo del cliente.
+  Cliente: En este no, la clase cliente posee datos más de tipo formulario y varias de ellas están sujetas a cambios. (ej: número de teléfono, edad, dirección) 
+  
+e) ConfiguracionCine es Singleton y el Builder de Compra necesita el IVA que ella guarda. ¿El Builder debe llamar a ConfiguracionCine.getInstancia() por dentro? ¿Por qué? 
+
+  Si, debido a la globalidad del Singleton, al ser basicamente el unico punto de acceso de la instancia, y para mantener el diseño limpio y organizado por atributos de el Builder.
