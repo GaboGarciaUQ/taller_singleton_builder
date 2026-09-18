@@ -1,0 +1,25 @@
+package com.uniquindio.co;
+
+public class ConsecutivoFactura {
+
+    // Pieza 1 — la clase guarda su unica instancia:
+    private static final ConsecutivoFactura instancia = new ConsecutivoFactura();
+
+    private int ultimo = 0;
+
+    // Pieza 2 — LA LINEA DEL PATRON (constructor privado):
+    private ConsecutivoFactura() { }
+
+    // Pieza 3 — la unica puerta (por que va static?):
+    // Va static porque debe poder llamarse sin tener ya un objeto
+    // (ConsecutivoFactura.getInstancia()); es precisamente el problema
+    // que resuelve el patrón: nadie tiene todavía una instancia.
+    public static ConsecutivoFactura getInstancia() {
+        return instancia;
+    }
+
+    public int siguiente() {
+        ultimo = ultimo + 1;
+        return ultimo;
+    }
+}
